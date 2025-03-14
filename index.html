@@ -3,27 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main-Page</title>
+    <title>E-Commerce</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="app.js"></script>
+    <script defer type="module" src="login.js"></script>
 </head>
 <body>
-    <h1>hello there main here from main.html file !</h1>
-
-
-
-
-    <button id="logout">Logout Your Account</button>
-
-
-
-
-
-
-
-
-
-
-
-
-    <script type="module" defer src="app.js"></script>
-</body>
+  
+  <!-- Navbar -- Header -->
+    <nav class="navbar hover-under navbar-expand-lg navbar-light bg-light-subtle border-bottom shadow position-sticky top-0 w-100 ">
+        <a class=" ms-5 border-dark navbar-brand" href="#"><img class=" object-fit-contain" src="img/main-logo.png" alt="Logo" ></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse d-flex justify-content-end me-5 align-items-center" id="navbarNavAltMarkup">
+          <div class="navbar-nav  gap-5">
+            <a class="nav-item nav-link active fw-bolder animation" href="#">Wish List</a>
+            <a class="nav-item nav-link active fw-bolder animation" id="cartitem" href="cart.html">Cart Item</a>
+            <button class="nav-item  nav-link active fw-bolder animation" id="logout">LogOut</button>
+          </div>
+        </div>
+      </nav>
+      <!-- Welcome Box Div -->
+      <div class="container mt-5 br bg-info w-100 p-5 d-flex justify-content-between">
+        <div class="w-50 gap-2">
+          <h3 class="fw-bolder mb-3">Welcome to Your Dream Store!</h3>
+          <p class="fw-bold text-dark">Discover the ultimate shopping destination for men’s and women’s fashion, cutting-edge electronics, and stunning jewelry. Explore our handpicked collection of 20 exclusive products crafted for your style and convenience!</p>
+        </div>
+        <div class="w-50 d-flex justify-content-end">
+          <img class="object-fit-fill" src="img/main-logo.png" alt="Logo!">
+        </div>
+      </div>
+      <!-- hide all box after click view cart item button in navbar  -->
+      <div class="hidebox" id="hidebox">
+        <!-- Slider -->
+        <div id="carouselExampleIndicators" class="carousel slide mt-5 mb-5">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg" class="d-block w-100" style="height: 400px; object-fit: contain;" alt="Mens Cloth">
+            </div>
+            <div class="carousel-item">
+              <img src="https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_.jpg" class="d-block w-100" style="height: 400px; object-fit: contain;" alt="Electronic">
+            </div>
+            <div class="carousel-item">
+              <img src="https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg" class="d-block w-100" style="height: 300px; object-fit: contain; object-position: center" alt="Jewellery">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+        <hr>
+        <!-- Discount Box Div -->
+        <div class="bg-info p-5 d-flex  justify-content-center align-items-center div-box container">
+          <div class="container  bg-info-subtle d-flex justify-content-between align-items-center w-75">
+            <div class="h-100  w-100 d-flex flex-column justify-content-start ps-4 align-items-center">
+            <h2 class="mt-5 mb-4">10% OFF Discount Coupons</h2>
+            <h6 class="text-light-emphasis">Subscribe us to get 10% OFF on all the purchases</h6>
+          </div>
+          <div class="h-100 w-100 d-flex justify-content-end pe-3 align-items-center">
+            <button type="submit" class="mailbtn">Email</button>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <!-- Featured Product Box Div -- View All Button -->
+      <div class=" d-flex  justify-content-between p-1 w-100 container-fluid mt-5">
+        <h3 class="ms-5 fw-bolder">Featured Products</h3>
+        <button id="viewitem" class="me-5 view-all-btn hover-under">View All</button>
+      </div>
+      <!-- Example Product Container -->
+      <div class="container  d-flex justify-content-between w-100 gap-5 p-5 ">
+        <div class="card hover-card" style="width: 25rem ;height:25rem;">
+          <img src="https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg" class="card-img p-2" alt="Image of Item">
+        </div>
+        <div class="card hover-card" style="width: 25rem ;height:25rem;">
+          <img src="https://fakestoreapi.com/img/71z3kpMAYsL._AC_UY879_.jpg" class="card-img p-2" alt="Image of Item">
+        </div>
+        
+        <div class="card hover-card" style="width: 24rem ;height:25rem;">
+          <img src="https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg" class="card-img p-2" alt="Image of Item">
+        </div>
+      </div>
+      <hr>
+      <!-- Show Item On Click View All Button Container -->
+      <div id="products-container" class="d-none">
+        <!-- this is card div cards from js -->
+      </div>
+      <!-- Contact Us Box Div -->
+        <div class="container br mt-5 bg-info d">
+          <div class="row w-100 align-items-center d-flex">
+            <div class="col-8 p-5 w-100 align-items-center d-flex con-4 mt-5 ms-5">
+              <h1 class="ms-5 fs-1 fw-bolder text-center h1-6 pt-2">Contact Us</h1>
+              <p class="ms-5 fs-5 text-center mt-3">
+                Connect with Us: Let's Discuss Your Needs !
+              </p>
+            </div>
+          </div>
+        </div>
+         <!-- Contact Form Box Div -->
+         <div class="border-3  br border-black bg-light container d-flex justify-content-between mt-5">
+          <div class="row bg-gain mt-5 p-5 fw-bolder text-capitalize gap-4 ">
+            <div class="col-7 p-5">
+              <div class="mt-01 mb-2">
+                <input type="checkbox" id="html" name="fav_language" value="HTML">
+              <label for="html">Say Hi</label>
+              </div>
+              <form action="form" class="form-cont">
+                <h2>name</h2>
+                <input type="text" id="name">
+                <h2>Email</h2>
+                <input type="email" id="name">
+                <h2>Message</h2>
+                <textarea name="Message" id="Message" cols="40" rows="5">Message</textarea>
+              </form>
+              <button type="submit" class="animation-btn w-100 animation ">Send Message</button>
+            </div>
+          </div>
+          <div class="col-5">
+            <img class="overflow-hidden img-form" src="img/contact-photo.png" alt="LocalImage">
+          </div>
+        </div>
+       </di>
+    </div>
+       
+       <!-- View Cart Item Box Container After Click Button(View Cart) in Navbar -->
+      <div id="row-1" class="mt-3 container p-2 d-flex justify-content-center flex-column ">
+        <!-- this is card div cards from CartList -->
+      </div>     
+      <!-- footer -->
+       <hr>
+    <div class="container-fluid bg-light  p-5">
+        <div class="p-3">
+          <div class="col p-3 fw-bolder contact-box last-content flex-column">
+            <h3 class="p-last text-decoration-underline">Contact Us</h3>
+            <p class="text-decoration-underline">Email: info@positivus.com</p>
+            <p class="text-decoration-underline">Phone: 555-567-8901</p>
+            <p class="text-decoration-underline">Address: 1234 Main St Moonstone City, Stardust State 12345</p>
+          </div>
+          <div class="fw-bolder mt-3 d-flex justify-content-center">
+            <div class="d-flex justify-content-center gap-5 footer">
+              <a href="" class="animation">about us</a>
+              <a href="" class="hover-under">services</a>
+              <a href="" class="hover-under">Use Cases</a>
+              <a href="" class="hover-under">Pricing</a>
+              <a href=""class="animation">Blog</a>
+            </div>
+          </div>
+      </div>
+  </body>
 </html>
