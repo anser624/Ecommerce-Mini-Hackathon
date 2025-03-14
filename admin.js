@@ -12,23 +12,23 @@ import {
     getDoc,
   } from "./firebase.js";
   
-  // Check if user is admin
+  
   onAuthStateChanged(auth, async (user) => {
     if (user) {
       const userDoc = await getDoc(doc(db, "users", user.uid));
       if (userDoc.exists() && userDoc.data().role === "admin") {
-        // Admin hai, product form aur list show karein
+        
         document.getElementById("add-product-form").style.display = "block";
         fetchProducts();
       } else {
-        // Admin nahi hai, redirect karein
+        
         alert("You are not an admin. Redirecting to login page...");
         if (!window.location.pathname.includes("loginpage.html")) {
           window.location.href = "loginpage.html";
         }
       }
     } else {
-      // User logged in nahi hai, redirect karein
+      
       alert("Please login first. Redirecting to login page...");
       if (!window.location.pathname.includes("loginpage.html")) {
         window.location.href = "loginpage.html";
@@ -36,14 +36,14 @@ import {
     }
   });
   
-  // Logout Button
+  
   document.getElementById("logout").addEventListener("click", async () => {
     await signOut(auth);
     alert("Logged out successfully");
     window.location.href = "loginpage.html";
   });
   
-  // Add Product Form
+  
   const productForm = document.getElementById("product-form");
   if (productForm) {
     productForm.addEventListener("submit", async (e) => {
@@ -60,7 +60,7 @@ import {
         });
         alert("Product added successfully!");
         productForm.reset();
-        fetchProducts(); // Refresh product list
+        fetchProducts(); 
       } catch (error) {
         console.error("Error adding product:", error);
         alert("Failed to add product.");
@@ -68,11 +68,11 @@ import {
     });
   }
   
-  // Fetch and Display Products
+  
   const productsList = document.getElementById("products-list");
   const fetchProducts = async () => {
     const querySnapshot = await getDocs(collection(db, "products"));
-    productsList.innerHTML = ""; // Clear the list before rendering
+    productsList.innerHTML = ""; 
     querySnapshot.forEach((doc) => {
       const product = doc.data();
       productsList.innerHTML += `
@@ -87,7 +87,7 @@ import {
     });
   };
   
-  // Edit Product
+  
   window.editProduct = async (productId) => {
     const newName = prompt("Enter new product name:");
     const newPrice = prompt("Enter new product price:");
@@ -101,7 +101,7 @@ import {
           imageUrl: newImageUrl,
         });
         alert("Product updated successfully!");
-        fetchProducts(); // Refresh product list
+        fetchProducts(); 
       } catch (error) {
         console.error("Error updating product:", error);
         alert("Failed to update product.");
@@ -109,13 +109,13 @@ import {
     }
   };
   
-  // Delete Product
+  
   window.deleteProduct = async (productId) => {
     if (confirm("Are you sure you want to delete this product?")) {
       try {
         await deleteDoc(doc(db, "products", productId));
         alert("Product deleted successfully!");
-        fetchProducts(); // Refresh product list
+        fetchProducts(); 
       } catch (error) {
         console.error("Error deleting product:", error);
         alert("Failed to delete product.");
