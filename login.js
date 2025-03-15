@@ -11,10 +11,15 @@ import {
 } from "./firebase.js";
 
 
+const admin = "admin123@gmail.com";
+const adminkey = "admin123";
+
+
 onAuthStateChanged(auth, (user) => {
   if (!user && !window.location.pathname.includes("loginpage.html")) {
     window.location.href = "loginpage.html";
-  } else if (user && window.location.pathname.includes("loginpage.html")) {
+  }
+  else if (user && window.location.pathname.includes("loginpage.html")) {
     window.location.href = "index.html";
   }
 });
@@ -27,6 +32,10 @@ if (loginBtn) {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     try {
+      if (email === admin && password === adminkey) {
+        window.location.href = "admin.html";
+        return;
+      };
       await signInWithEmailAndPassword(auth, email, password);
       window.location.href = "index.html";
       alert("Logged in successfully");
@@ -99,6 +108,8 @@ if (signupBtn) {
 
 let cart = [];
 let products = [];
+// 🛒 Wishlist aur Products ka Global Array
+let wishlist = [];
 
 
 const getCartFromLocalStorage = () => {
@@ -136,7 +147,7 @@ const displayProducts = () => {
          <h3 class="card-title">${product.name}</h3>
          <h4 class="card-text">${product.price} RS</h4>
          <button onclick="cartitem('${product.id}')" class="btnall hover-under">Add to Cart</button>
-         <button onclick="addToFavorites('${product.id}')" class="btnall hover-under">❤️</button>
+         <button onclick="addToWishlist('${product.id}')" class="btnall hover-under">❤️</button>
        </div>
     `;
   });
@@ -200,6 +211,92 @@ document.querySelectorAll("a.nav-item").forEach((link) => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
       window.location.href = "cart.html"; 
+    });
+  }
+});
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+
+// ✅ localStorage se wishlist load karo
+const getWishlistFromLocalStorage = () => {
+  const storedWishlist = localStorage.getItem("wishlist");
+  wishlist = storedWishlist ? JSON.parse(storedWishlist) : [];
+};
+
+// ✅ Wishlist ko localStorage mein save karo
+const saveWishlistToLocalStorage = () => {
+  localStorage.setItem("wishlist", JSON.stringify(wishlist));
+};
+
+// 💖 Wishlist mein item add karo
+window.addToWishlist = (docid) => {
+  const item = products.find((product) => product.id === docid);
+  if (item) {
+    const alreadyInWishlist = wishlist.find((product) => product.id === docid);
+    if (!alreadyInWishlist) {
+      wishlist.push(item);
+      alert(`${item.name} has been added to your wishlist.`);
+      saveWishlistToLocalStorage(); // ✅ localStorage mein save karo
+    } else {
+      alert("This item is already in your wishlist.");
+    }
+  } else {
+    alert("Item not found!");
+  }
+};
+
+// 💝 Wishlist ko wishlist.html par display karo
+const displayWishlist = () => {
+  getWishlistFromLocalStorage(); // ✅ localStorage se load karo
+
+  const wishlistContainer = document.getElementById("wishlist-container");
+  if (!wishlistContainer) return;
+  
+  wishlistContainer.innerHTML = "";
+  
+  if (wishlist.length === 0) {
+    alert("Your WishList Is Empty! Please Add Some Products To Your WishList"); 
+    wishlistContainer.innerHTML = "<p>Your wishlist is empty.</p>";
+    return;
+  }
+
+  wishlist.forEach((item, index) => {
+    wishlistContainer.innerHTML += `
+      <div class="card col-2 d-flex justify-content-center align-items-center m-3 py-2 bg-info bg-white mb-3">
+        <img src="${item.imageUrl}" style="height: 100px; width: 100px;" alt="${item.name}" />
+        <h5>${item.name}</h5>
+        <p>Price: ${item.price} RS</p>
+        <button onclick="removeFromWishlist(${index})" class="btn btn-danger btn-sm">Remove</button>
+      </div>`;
+  });
+};
+
+// 🗑️ Wishlist se item remove karo
+window.removeFromWishlist = (index) => {
+  const removedItem = wishlist.splice(index, 1)[0];
+  alert(`${removedItem.name} has been removed from your wishlist.`);
+  saveWishlistToLocalStorage();
+  displayWishlist();
+};
+
+// 🟢 Page load hone par setup karo
+window.addEventListener("DOMContentLoaded", () => {
+  fetchProducts(); // Products Firebase se lo
+  if (window.location.pathname.includes("wishlist.html")) {
+    displayWishlist(); // Agar wishlist page ho to show karo
+  }
+});
+
+// 🔗 Navbar "Wishlist" link se wishlist.html par redirect karo
+document.querySelectorAll("a.nav-item").forEach((link) => {
+  if (link.textContent.includes("Wishlist")) {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      window.location.href = "wishlist.html";
     });
   }
 });

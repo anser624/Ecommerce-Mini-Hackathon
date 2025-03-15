@@ -21,14 +21,18 @@ body {
     padding: 10px;
   }
   #products-container {
-    display: flex;
+    background: aquamarine;
     gap: 20px;
     margin: 20px;
   }
-  
+  .products-list{
+    background: black;
+    gap: 20px;
+    padding: 20px;
+  }
   .product { 
-    height: 250px;   
-    width: 300px;
+    height: 200px;   
+    width: 200px;
     border: 1px solid #ccc;
     padding: 30px 10px;
     margin-bottom: 10px;
@@ -44,6 +48,6 @@ body {
   
   button {
     margin: 5px;
-    padding: 5px 10px;
+    padding: 0px 10px;
     cursor: pointer;
   }

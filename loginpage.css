@@ -52,12 +52,12 @@ input{
     gap: 20px;
 }
 button{
-    margin: 10px 0px;
+    margin: 10px 10px;
     border: 1px solid black;
     border-radius: 10px;
-    font-size: 13px;
-    padding: 15px 10px;    
-    width: 15dvh;
+    font-size: 18px;
+    padding: 15px 20px;    
+    width: 20dvh;
 }
 button:hover{
     cursor: pointer;

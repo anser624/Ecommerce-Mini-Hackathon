@@ -13,26 +13,13 @@ import {
   } from "./firebase.js";
   
   
-  onAuthStateChanged(auth, async (user) => {
-    if (user) {
-      const userDoc = await getDoc(doc(db, "users", user.uid));
-      if (userDoc.exists() && userDoc.data().role === "admin") {
-        
-        document.getElementById("add-product-form").style.display = "block";
-        fetchProducts();
-      } else {
-        
-        alert("You are not an admin. Redirecting to login page...");
-        if (!window.location.pathname.includes("loginpage.html")) {
-          window.location.href = "loginpage.html";
-        }
-      }
-    } else {
-      
-      alert("Please login first. Redirecting to login page...");
-      if (!window.location.pathname.includes("loginpage.html")) {
-        window.location.href = "loginpage.html";
-      }
+  onAuthStateChanged(auth, (user) => {
+    if (email === admin && password === adminkey) {
+      window.location.href = "admin.html";
+      return;
+    }
+    else if (user && window.location.pathname.includes("loginpage.html")) {
+      window.location.href = "admin.html";
     }
   });
   
