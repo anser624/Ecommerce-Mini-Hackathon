@@ -109,7 +109,7 @@ if (signupBtn) {
 let cart = [];
 let products = [];
 
-let wishlist = [];
+
 
 
 const getCartFromLocalStorage = () => {
@@ -217,11 +217,7 @@ document.querySelectorAll("a.nav-item").forEach((link) => {
 
 
 
-
-
-
-
-
+let wishlist = [];
 const getWishlistFromLocalStorage = () => {
   const storedWishlist = localStorage.getItem("wishlist");
   wishlist = storedWishlist ? JSON.parse(storedWishlist) : [];
