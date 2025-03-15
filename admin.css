@@ -26,7 +26,7 @@ body {
     margin: 20px;
   }
   .products-list{
-    background: black;
+    display: flex;
     gap: 20px;
     padding: 20px;
   }

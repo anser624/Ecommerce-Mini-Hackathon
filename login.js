@@ -108,7 +108,7 @@ if (signupBtn) {
 
 let cart = [];
 let products = [];
-// 🛒 Wishlist aur Products ka Global Array
+
 let wishlist = [];
 
 
@@ -217,22 +217,22 @@ document.querySelectorAll("a.nav-item").forEach((link) => {
 
 
 
-/////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////
 
-// ✅ localStorage se wishlist load karo
+
+
+
+
 const getWishlistFromLocalStorage = () => {
   const storedWishlist = localStorage.getItem("wishlist");
   wishlist = storedWishlist ? JSON.parse(storedWishlist) : [];
 };
 
-// ✅ Wishlist ko localStorage mein save karo
+
 const saveWishlistToLocalStorage = () => {
   localStorage.setItem("wishlist", JSON.stringify(wishlist));
 };
 
-// 💖 Wishlist mein item add karo
+
 window.addToWishlist = (docid) => {
   const item = products.find((product) => product.id === docid);
   if (item) {
@@ -240,7 +240,7 @@ window.addToWishlist = (docid) => {
     if (!alreadyInWishlist) {
       wishlist.push(item);
       alert(`${item.name} has been added to your wishlist.`);
-      saveWishlistToLocalStorage(); // ✅ localStorage mein save karo
+      saveWishlistToLocalStorage(); 
     } else {
       alert("This item is already in your wishlist.");
     }
@@ -249,9 +249,9 @@ window.addToWishlist = (docid) => {
   }
 };
 
-// 💝 Wishlist ko wishlist.html par display karo
+
 const displayWishlist = () => {
-  getWishlistFromLocalStorage(); // ✅ localStorage se load karo
+  getWishlistFromLocalStorage(); 
 
   const wishlistContainer = document.getElementById("wishlist-container");
   if (!wishlistContainer) return;
@@ -275,7 +275,7 @@ const displayWishlist = () => {
   });
 };
 
-// 🗑️ Wishlist se item remove karo
+
 window.removeFromWishlist = (index) => {
   const removedItem = wishlist.splice(index, 1)[0];
   alert(`${removedItem.name} has been removed from your wishlist.`);
@@ -283,15 +283,15 @@ window.removeFromWishlist = (index) => {
   displayWishlist();
 };
 
-// 🟢 Page load hone par setup karo
+
 window.addEventListener("DOMContentLoaded", () => {
-  fetchProducts(); // Products Firebase se lo
+  fetchProducts(); 
   if (window.location.pathname.includes("wishlist.html")) {
-    displayWishlist(); // Agar wishlist page ho to show karo
+    displayWishlist(); 
   }
 });
 
-// 🔗 Navbar "Wishlist" link se wishlist.html par redirect karo
+
 document.querySelectorAll("a.nav-item").forEach((link) => {
   if (link.textContent.includes("Wishlist")) {
     link.addEventListener("click", (e) => {
