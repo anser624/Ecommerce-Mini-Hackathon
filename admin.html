@@ -1,32 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Admin Panel</title>
-        <link rel="stylesheet" href="admin.css">
-        <script defer type="module" src="admin.js"></script>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="admin.css" />
+    <script defer type="module" src="admin.js"></script>
+  </head>
+  <body>
     <header>
-        <h1>Admin Panel</h1>
-        <div>
-            <button id="logout">Logout</button>
-        </div>
+      <h1>Admin Panel</h1>
+      <div>
+        <button id="logout">Logout</button>
+      </div>
     </header>
 
     <div id="add-product-form">
-        <h2>Add New Product</h2>
-        <form id="product-form">
-            <input type="text" id="product-name" placeholder="Product Name" required>
-            <input type="text" id="product-price" placeholder="Product Price" required>
-            <input type="text" id="product-image" placeholder="Image URL" required>
-            <button type="submit">Add Product</button>
-        </form>
+      <h2>Add New Product</h2>
+      <form id="product-form">
+        <input
+          type="text"
+          id="product-name"
+          placeholder="Product Name"
+          required
+        />
+        <input
+          type="text"
+          id="product-price"
+          placeholder="Product Price"
+          required
+        />
+        <input
+          type="text"
+          id="product-image"
+          placeholder="Image URL"
+          required
+        />
+        <button type="submit">Add Product</button>
+      </form>
     </div>
     <div id="products-container">
-        <h2>Products List</h2>
-        <div id="products-list"></div>
+      <h2>Products List</h2>
+      <div id="products-list"></div>
     </div>
-</body>
+  </body>
 </html>
